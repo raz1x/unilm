@@ -57,7 +57,7 @@ def convert(args):
             file_name = os.path.basename(image_path)
             image = Image.open(image_path)
             width, length = image.size
-            for item in data["form"]:
+            for item in data:
                 words, label = item["words"], item["label"]
                 words = [w for w in words if w["text"].strip() != ""]
                 if len(words) == 0:
