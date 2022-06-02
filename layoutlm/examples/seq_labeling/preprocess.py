@@ -58,23 +58,23 @@ def convert(args):
             image = Image.open(image_path)
             width, length = image.size
             for item in data:
-                words, label = item["words"], item["label"]
+                words, label = item["text"], item["label"]
                 words = [w for w in words if w["text"].strip() != ""]
                 if len(words) == 0:
                     continue
                 if label == "other":
                     for w in words:
-                        fw.write(w["text"] + "\tO\n")
+                        fw.write(w + "\tO\n")
                         fbw.write(
-                            w["text"]
+                            w
                             + "\t"
-                            + bbox_string(w["box"], width, length)
+                            + bbox_string(item["box"], width, length)
                             + "\n"
                         )
                         fiw.write(
-                            w["text"]
+                            w
                             + "\t"
-                            + actual_bbox_string(w["box"], width, length)
+                            + actual_bbox_string(item["box"], width, length)
                             + "\t"
                             + file_name
                             + "\n"
